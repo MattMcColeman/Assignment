@@ -104,7 +104,7 @@ public class Main extends Application {
         TextField accField = new TextField();
         accField.setPromptText("Precision");
         editArea.add(accField, 1, 2);
-
+        /*
         Button addButton = new Button("Add");
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -122,7 +122,7 @@ public class Main extends Application {
             }
         });
         editArea.add(addButton, 1, 4);
-
+        */
         /* arrange all components in the main user interface */
         layout = new BorderPane();
         layout.setTop(menuBar);
