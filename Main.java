@@ -64,7 +64,7 @@ public class Main extends Application {
         table.setEditable(true);
 
         /* create the table's columns */
-        TableColumn<Student,Integer> sidColumn = null;
+        TableColumn<Student,String> sidColumn = null;
         sidColumn = new TableColumn<>("File");
         sidColumn.setMinWidth(250);
         sidColumn.setCellValueFactory(new PropertyValueFactory<>("sid"));
@@ -72,7 +72,7 @@ public class Main extends Application {
         TableColumn<Student,String> firstNameColumn = null;
         firstNameColumn = new TableColumn<>("Actual Class");
         firstNameColumn.setMinWidth(100);
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("acc"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         firstNameColumn.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
         firstNameColumn.setOnEditCommit((CellEditEvent<Student, String> event) -> {
             ((Student)event.getTableView().getItems().get(event.getTablePosition().getRow())).setFirstName(event.getNewValue());
@@ -93,27 +93,27 @@ public class Main extends Application {
         editArea.setVgap(10);
         editArea.setHgap(10);
 
-        Label gpaLabel = new Label("GPA:");
+        Label gpaLabel = new Label("Accuracy:");
         editArea.add(gpaLabel, 0,1);
         TextField gpaField = new TextField();
-        gpaField.setPromptText("GPA");
+        gpaField.setPromptText("Accuracy");
         editArea.add(gpaField, 1, 1);
 
-        Label accLabel = new Label("GPA:");
+        Label accLabel = new Label("Precision");
         editArea.add(accLabel, 0, 2);
         TextField accField = new TextField();
-        accField.setPromptText("GPA");
+        accField.setPromptText("Precision");
         editArea.add(accField, 1, 2);
 
         Button addButton = new Button("Add");
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                int sid = Integer.parseInt(sidField.getText());
+                String sid = sidField.getText();
                 String firstName = fnameField.getText();
                 double gpa = Double.parseDouble(gpaField.getText());
                 double acc = Double.parseDouble(accField.getText());
 
-                table.getItems().add(new Student(sid, firstName, gpa, acc));
+                table.getItems().add(new Student(sid, firstName, gpa));
 
                 sidField.setText("");
                 fnameField.setText("");
