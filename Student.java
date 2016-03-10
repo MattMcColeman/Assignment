@@ -1,19 +1,19 @@
 public class Student {
-    private String sid;
-    private String firstName;
-    private float gpa;
+    private String emailName;
+    private String actualClass;
+    private float spamProbability;
     
-    public Student(String sid, String firstName, float gpa) {
-        this.sid = sid;
-        this.firstName = firstName;
-        this.gpa = gpa;
+    public Student(String emailName, String actualClass, float spamProbability) {
+        this.emailName = emailName;
+        this.actualClass = actualClass;
+        this.spamProbability = spamProbability;
     }
     
-    public String getSid() { return this.sid; }
-    public String getFirstName() { return this.firstName; }
-    public float getGpa() { return this.gpa; }
+    public String getEmailName() { return this.emailName; }
+    public String getActualClass() { return this.actualClass; }
+    public float getSpamProbability() { return this.spamProbability; }
     
-    public void setSid(String sid) { this.sid = sid; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
-    public void setGpa(float gpa) { this.gpa = gpa; }
+    public void setEmailName(String emailName) { this.emailName = emailName; }
+    public void setActualClass(String actualClass) { this.actualClass = actualClass; }
+    public void setSpamProbability(float spamProbability) { this.spamProbability = spamProbability; }
 }

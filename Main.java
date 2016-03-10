@@ -33,7 +33,7 @@ public class Main extends Application {
     private Scene scene, sceneIntro;
     private BorderPane layout;
     private TableView<Student> table;
-    private TextField sidField, fnameField, lnameField, gpaField;
+    private TextField emailNameField, fnameField, lnameField, spamProbabilityField;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -75,29 +75,32 @@ public class Main extends Application {
         table.setItems(DataSource.getAllStudents());
         table.setEditable(true);
 
-        /* create the table's columns */
-        TableColumn<Student,String> sidColumn = null;
-        sidColumn = new TableColumn<>("File");
-        sidColumn.setMinWidth(250);
-        sidColumn.setCellValueFactory(new PropertyValueFactory<>("sid"));
-
-        TableColumn<Student,String> firstNameColumn = null;
-        firstNameColumn = new TableColumn<>("Actual Class");
-        firstNameColumn.setMinWidth(100);
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        firstNameColumn.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-        firstNameColumn.setOnEditCommit((CellEditEvent<Student, String> event) -> {
-            ((Student)event.getTableView().getItems().get(event.getTablePosition().getRow())).setFirstName(event.getNewValue());
+        TableColumn<Student,String> emailNameColumn = null;
+        emailNameColumn = new TableColumn<>("Actual Class");
+        emailNameColumn.setMinWidth(250);
+        emailNameColumn.setCellValueFactory(new PropertyValueFactory<>("emailName"));
+        emailNameColumn.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
+        emailNameColumn.setOnEditCommit((CellEditEvent<Student, String> event) -> {
+            ((Student)event.getTableView().getItems().get(event.getTablePosition().getRow())).setEmailName(event.getNewValue());
         });
 
-        TableColumn<Student,Double> gpaColumn = null;
-        gpaColumn = new TableColumn<>("Spam Probability");
-        gpaColumn.setMinWidth(250);
-        gpaColumn.setCellValueFactory(new PropertyValueFactory<>("gpa"));
+        TableColumn<Student,String> actualClassColumn = null;
+        actualClassColumn = new TableColumn<>("Actual Class");
+        actualClassColumn.setMinWidth(100);
+        actualClassColumn.setCellValueFactory(new PropertyValueFactory<>("actualClass"));
+        actualClassColumn.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
+        actualClassColumn.setOnEditCommit((CellEditEvent<Student, String> event) -> {
+            ((Student)event.getTableView().getItems().get(event.getTablePosition().getRow())).setActualClass(event.getNewValue());
+        });
 
-        table.getColumns().add(sidColumn);
-        table.getColumns().add(firstNameColumn);
-        table.getColumns().add(gpaColumn);
+        TableColumn<Student,Double> spamProbabilityColumn = null;
+        spamProbabilityColumn = new TableColumn<>("Spam Probability");
+        spamProbabilityColumn.setMinWidth(250);
+        spamProbabilityColumn.setCellValueFactory(new PropertyValueFactory<>("spamProbability"));
+
+        table.getColumns().add(emailNameColumn);
+        table.getColumns().add(actualClassColumn);
+        table.getColumns().add(spamProbabilityColumn);
 
         /* create an edit form (for the bottom of the user interface) */
         GridPane editArea = new GridPane();
@@ -105,11 +108,11 @@ public class Main extends Application {
         editArea.setVgap(10);
         editArea.setHgap(10);
 
-        Label gpaLabel = new Label("Accuracy:");
-        editArea.add(gpaLabel, 0,1);
-        TextField gpaField = new TextField();
-        gpaField.setPromptText("Accuracy");
-        editArea.add(gpaField, 1, 1);
+        Label spamProbabilityLabel = new Label("Accuracy:");
+        editArea.add(spamProbabilityLabel, 0,1);
+        TextField spamProbabilityField = new TextField();
+        spamProbabilityField.setPromptText("Accuracy");
+        editArea.add(spamProbabilityField, 1, 1);
 
         Label accLabel = new Label("Precision");
         editArea.add(accLabel, 0, 2);
@@ -120,16 +123,16 @@ public class Main extends Application {
         Button addButton = new Button("Add");
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                String sid = sidField.getText();
-                String firstName = fnameField.getText();
-                float gpa = Float.parseFloat(gpaField.getText());
+                String emailName = emailNameField.getText();
+                String actualClass = fnameField.getText();
+                float spamProbability = Float.parseFloat(spamProbabilityField.getText());
                 double acc = Double.parseDouble(accField.getText());
 
-                table.getItems().add(new Student(sid, firstName, gpa));
+                table.getItems().add(new Student(emailName, actualClass, spamProbability));
 
-                sidField.setText("");
+                emailNameField.setText("");
                 fnameField.setText("");
-                gpaField.setText("");
+                spamProbabilityField.setText("");
                 accField.setText("");
             }
         });
