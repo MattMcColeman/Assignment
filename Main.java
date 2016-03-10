@@ -122,7 +122,7 @@ public class Main extends Application {
             @Override public void handle(ActionEvent e) {
                 String sid = sidField.getText();
                 String firstName = fnameField.getText();
-                double gpa = Double.parseDouble(gpaField.getText());
+                float gpa = Float.parseFloat(gpaField.getText());
                 double acc = Double.parseDouble(accField.getText());
 
                 table.getItems().add(new Student(sid, firstName, gpa));

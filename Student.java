@@ -1,11 +1,9 @@
 public class Student {
     private String sid;
     private String firstName;
-    private String lastName;
-    private double gpa;
-    private double acc;
+    private float gpa;
     
-    public Student(String sid, String firstName, double gpa) {
+    public Student(String sid, String firstName, float gpa) {
         this.sid = sid;
         this.firstName = firstName;
         this.gpa = gpa;
@@ -13,9 +11,9 @@ public class Student {
     
     public String getSid() { return this.sid; }
     public String getFirstName() { return this.firstName; }
-    public double getGpa() { return this.gpa; }
+    public float getGpa() { return this.gpa; }
     
     public void setSid(String sid) { this.sid = sid; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
-    public void setGpa(double gpa) { this.gpa = gpa; }
+    public void setGpa(float gpa) { this.gpa = gpa; }
 }
