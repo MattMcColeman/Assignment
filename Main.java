@@ -32,7 +32,7 @@ public class Main extends Application {
     private Stage window;
     private Scene scene, sceneIntro;
     private BorderPane layout;
-    private TableView<Student> table;
+    private TableView<TestFile> table;
     private TextField emailNameField, fnameField, lnameField, spamProbabilityField;
 
     @Override
@@ -72,28 +72,28 @@ public class Main extends Application {
 
         /* create the table (for the center of the user interface) */
         table = new TableView<>();
-        table.setItems(DataSource.getAllStudents());
+        table.setItems(DataSource.getAllTestFiles());
         table.setEditable(true);
 
-        TableColumn<Student,String> emailNameColumn = null;
+        TableColumn<TestFile,String> emailNameColumn = null;
         emailNameColumn = new TableColumn<>("Actual Class");
         emailNameColumn.setMinWidth(250);
         emailNameColumn.setCellValueFactory(new PropertyValueFactory<>("emailName"));
-        emailNameColumn.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-        emailNameColumn.setOnEditCommit((CellEditEvent<Student, String> event) -> {
-            ((Student)event.getTableView().getItems().get(event.getTablePosition().getRow())).setEmailName(event.getNewValue());
+        emailNameColumn.setCellFactory(TextFieldTableCell.<TestFile>forTableColumn());
+        emailNameColumn.setOnEditCommit((CellEditEvent<TestFile, String> event) -> {
+            ((TestFile)event.getTableView().getItems().get(event.getTablePosition().getRow())).setEmailName(event.getNewValue());
         });
 
-        TableColumn<Student,String> actualClassColumn = null;
+        TableColumn<TestFile,String> actualClassColumn = null;
         actualClassColumn = new TableColumn<>("Actual Class");
         actualClassColumn.setMinWidth(100);
         actualClassColumn.setCellValueFactory(new PropertyValueFactory<>("actualClass"));
-        actualClassColumn.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-        actualClassColumn.setOnEditCommit((CellEditEvent<Student, String> event) -> {
-            ((Student)event.getTableView().getItems().get(event.getTablePosition().getRow())).setActualClass(event.getNewValue());
+        actualClassColumn.setCellFactory(TextFieldTableCell.<TestFile>forTableColumn());
+        actualClassColumn.setOnEditCommit((CellEditEvent<TestFile, String> event) -> {
+            ((TestFile)event.getTableView().getItems().get(event.getTablePosition().getRow())).setActualClass(event.getNewValue());
         });
 
-        TableColumn<Student,Double> spamProbabilityColumn = null;
+        TableColumn<TestFile,Double> spamProbabilityColumn = null;
         spamProbabilityColumn = new TableColumn<>("Spam Probability");
         spamProbabilityColumn.setMinWidth(250);
         spamProbabilityColumn.setCellValueFactory(new PropertyValueFactory<>("spamProbability"));
@@ -133,8 +133,8 @@ public class Main extends Application {
         layout.setCenter(table);
         layout.setBottom(editArea);
 
-        Label label1 = new Label("Welcome to the first scene!");
-        Button button1 = new Button("Go to scene 2");
+        Label label1 = new Label("Welcome to Spam Master V1.869.2754!");
+        Button button1 = new Button("Choose file to filter spam");
         button1.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){

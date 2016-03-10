@@ -4,9 +4,9 @@ import java.io.*;
 
 public class DataSource
 {
-	public static ObservableList<Student> getAllStudents()
+	public static ObservableList<TestFile> getAllTestFiles()
 	{
-		ObservableList<Student> prob= FXCollections.observableArrayList();
+		ObservableList<TestFile> prob= FXCollections.observableArrayList();
 		try
 		{
 			Scanner sc = new Scanner(new File("WordProbabilities"));
@@ -23,7 +23,7 @@ public class DataSource
 				{
 					type = "ham";
 				}
-				prob.add(new Student(fName,type,val));
+				prob.add(new TestFile(fName,type,val));
 			}
 		}
 		catch(Exception e)
