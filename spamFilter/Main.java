@@ -70,6 +70,17 @@ public class Main extends Application {
         menuBar.getMenus().add(editMenu);
         menuBar.getMenus().add(helpMenu);
 
+        //selects directory for spamfilter
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File("."));
+        File mainDirectory = directoryChooser.showDialog(primaryStage);
+
+        String mainPath = mainDirectory.getAbsolutePath();
+
+        //creates data file to read from
+        Training trainy = new Training(mainPath);
+        trainy.Train();
+
         /* create the table (for the center of the user interface) */
         table = new TableView<>();
         table.setItems(DataSource.getAllTestFiles());
@@ -133,21 +144,16 @@ public class Main extends Application {
         layout.setCenter(table);
         layout.setBottom(editArea);
 
-
+        /*
         //creating intro scene and button to choose a directory and take one to the next scene
         Label label1 = new Label("Welcome to Spam Master V1.869.2754!");
         Button button1 = new Button("Choose file to filter spam");
         button1.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){
-                DirectoryChooser directoryChooser = new DirectoryChooser();
-                directoryChooser.setInitialDirectory(new File("."));
-                File mainDirectory = directoryChooser.showDialog(primaryStage);
+                
 
-                String mainPath = mainDirectory.getAbsolutePath();
-
-                Training trainy = new Training(mainPath);
-                trainy.Train();
+                
 
 
                 primaryStage.setScene(scene); //sets scene for data table
@@ -158,10 +164,9 @@ public class Main extends Application {
         VBox layout1 = new VBox(20);
         layout1.getChildren().addAll(label1, button1);
         sceneIntro = new Scene(layout1, 600, 600);
-
-
+        */
         scene = new Scene(layout, 600, 600);
-        primaryStage.setScene(sceneIntro); //sets scene for first window that appears
+        primaryStage.setScene(scene); //sets scene for first window that appears
         primaryStage.show();
     }
 
