@@ -144,6 +144,10 @@ public class Main extends Application {
                 directoryChooser.setInitialDirectory(new File("."));
                 File mainDirectory = directoryChooser.showDialog(primaryStage);
 
+                Training trainy = new Training();
+                trainy.Train();
+
+
                 primaryStage.setScene(scene); //sets scene for data table
             }
         });
