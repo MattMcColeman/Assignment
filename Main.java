@@ -133,6 +133,8 @@ public class Main extends Application {
         layout.setCenter(table);
         layout.setBottom(editArea);
 
+
+        //creating intro scene and button to choose a directory and take one to the next scene
         Label label1 = new Label("Welcome to Spam Master V1.869.2754!");
         Button button1 = new Button("Choose file to filter spam");
         button1.setOnAction(new EventHandler<ActionEvent>(){
@@ -142,18 +144,18 @@ public class Main extends Application {
                 directoryChooser.setInitialDirectory(new File("."));
                 File mainDirectory = directoryChooser.showDialog(primaryStage);
 
-                primaryStage.setScene(scene);
+                primaryStage.setScene(scene); //sets scene for data table
             }
         });
 
-        //Layout 1 - children are laid out in vertical column
+        //Layout 1 - arranges button "choose file to filter spam" on first scene
         VBox layout1 = new VBox(20);
         layout1.getChildren().addAll(label1, button1);
         sceneIntro = new Scene(layout1, 600, 600);
 
 
         scene = new Scene(layout, 600, 600);
-        primaryStage.setScene(sceneIntro);
+        primaryStage.setScene(sceneIntro); //sets scene for first window that appears
         primaryStage.show();
     }
 
