@@ -12,6 +12,7 @@ import javafx.collections.*;
 import javafx.event.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.*;
+import javafx.stage.DirectoryChooser;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -142,7 +143,16 @@ public class Main extends Application {
 
         Label label1 = new Label("Welcome to the first scene!");
         Button button1 = new Button("Go to scene 2");
-        button1.setOnAction(e -> primaryStage.setScene(scene));
+        button1.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                directoryChooser.setInitialDirectory(new File("."));
+                File mainDirectory = directoryChooser.showDialog(primaryStage);
+
+                primaryStage.setScene(scene);
+            }
+        });
 
         //Layout 1 - children are laid out in vertical column
         VBox layout1 = new VBox(20);
