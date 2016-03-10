@@ -13,12 +13,23 @@ import javafx.event.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.*;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 
 public class Main extends Application {
     private Stage window;
+    private Scene scene, sceneIntro;
     private BorderPane layout;
     private TableView<Student> table;
     private TextField sidField, fnameField, lnameField, gpaField;
@@ -129,8 +140,18 @@ public class Main extends Application {
         layout.setCenter(table);
         layout.setBottom(editArea);
 
-        Scene scene = new Scene(layout, 600, 600);
-        primaryStage.setScene(scene);
+        Label label1 = new Label("Welcome to the first scene!");
+        Button button1 = new Button("Go to scene 2");
+        button1.setOnAction(e -> primaryStage.setScene(scene));
+
+        //Layout 1 - children are laid out in vertical column
+        VBox layout1 = new VBox(20);
+        layout1.getChildren().addAll(label1, button1);
+        sceneIntro = new Scene(layout1, 600, 600);
+
+
+        scene = new Scene(layout, 600, 600);
+        primaryStage.setScene(sceneIntro);
         primaryStage.show();
     }
 
