@@ -108,35 +108,24 @@ public class Main extends Application {
         editArea.setVgap(10);
         editArea.setHgap(10);
 
-        Label spamProbabilityLabel = new Label("Accuracy:");
-        editArea.add(spamProbabilityLabel, 0,1);
-        TextField spamProbabilityField = new TextField();
-        spamProbabilityField.setPromptText("Accuracy");
-        editArea.add(spamProbabilityField, 1, 1);
+        double accuracy = 0.1234;
+        String sAccuracy = String.valueOf(accuracy);
 
-        Label accLabel = new Label("Precision");
-        editArea.add(accLabel, 0, 2);
+        Label accLabel = new Label("Accuracy:");
+        editArea.add(accLabel, 0,1);
         TextField accField = new TextField();
-        accField.setPromptText("Precision");
-        editArea.add(accField, 1, 2);
+        accField.setPromptText(sAccuracy);
+        editArea.add(accField, 1, 1);
 
-        Button addButton = new Button("Add");
-        addButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                String emailName = emailNameField.getText();
-                String actualClass = fnameField.getText();
-                float spamProbability = Float.parseFloat(spamProbabilityField.getText());
-                double acc = Double.parseDouble(accField.getText());
+        double precision = 0.7070;
+        String sPrecision = String.valueOf(precision);
 
-                table.getItems().add(new Student(emailName, actualClass, spamProbability));
 
-                emailNameField.setText("");
-                fnameField.setText("");
-                spamProbabilityField.setText("");
-                accField.setText("");
-            }
-        });
-        editArea.add(addButton, 1, 4);
+        Label preLabel = new Label("Precision");
+        editArea.add(preLabel, 0, 2);
+        TextField preField = new TextField();
+        preField.setPromptText(sPrecision);
+        editArea.add(preField, 1, 2);
 
         /* arrange all components in the main user interface */
         layout = new BorderPane();
